@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import Svg, {Path} from 'react-native-svg';
 import * as Animatable from 'react-native-animatable';
@@ -102,11 +102,9 @@ const App = () => {
       <View style={styles.optionsContainer}>
         {questionData.options.map((option, index) => (
           <View key={index} style={styles.buttonContainer}>
-            <Button
-              title={option.toString()}
-              color="#74ADBD"
-              onPress={() => handleAnswer(option)}
-            />
+          <TouchableOpacity style={styles.customButton} onPress={() => handleAnswer(option)}>
+    <Text style={styles.buttonText}>{option.toString()}</Text>
+</TouchableOpacity>
           </View>
         ))}
       </View>
@@ -192,7 +190,7 @@ const styles = StyleSheet.create({
   },
   question: {
     fontWeight: 'bold',
-    fontSize: 36,
+    fontSize: 48,
     marginBottom: 40,
     color: 'white',
   },
@@ -203,7 +201,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     margin: 15,
     width: '40%',
-    height: 60,
+    height: 80,
   },
   modalContent: {
     backgroundColor: 'white',
@@ -224,6 +222,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
+  customButton: {
+    backgroundColor: "#74ADBD",
+    alignItems: "center",
+    justifyContent: "center",
+    width:"110%",
+    height:80
+    // ... any other styles you want for the button container
+},
+buttonText: {
+    fontSize: 20, // Change the font size here
+    color: "white",
+    // ... any other text styles you want
+}
 });
 
 export default App;
